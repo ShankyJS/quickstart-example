@@ -18,7 +18,7 @@
       },
       "assets": {
         "host01": [
-          {"file": "install.sh", "target": "/", "chmod": "+x"}
+          {"file": "wait-background.sh", "target": "/ks", "chmod": "+x"}
         ]
       }
     },
