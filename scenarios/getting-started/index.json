@@ -15,11 +15,6 @@
       ],
       "finish": {
         "text": "finish.md"
-      },
-      "assets": {
-        "host01": [
-          {"file": "wait-background.sh", "target": "/ks", "chmod": "+x"}
-        ]
       }
     },
     "backend": {

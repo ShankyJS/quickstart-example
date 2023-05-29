@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 # Install rsync if it's not already installed
 command -v rsync &> /dev/null || sudo apt-get install -y rsync
