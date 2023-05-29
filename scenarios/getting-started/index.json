@@ -1,0 +1,27 @@
+{
+    "title": "Getting started with Garden",
+    "description": "Run the vote app with Garden.io",
+    "details": {
+        "intro": {
+          "text": "intro.md",
+          "foreground": "install.sh"
+        },
+        "steps": [
+        {
+          "title": "Run the vote app with Garden.io",
+          "text": "step1.md"
+        }
+      ],
+      "finish": {
+        "text": "finish.md"
+      },
+      "assets": {
+        "host01": [
+          {"file": "install.sh", "target": "/", "chmod": "+x"}
+        ]
+      }
+    },
+    "backend": {
+      "imageid": "ubuntu"
+    }
+  }
