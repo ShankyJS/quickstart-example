@@ -18,6 +18,7 @@ cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 sleep 5
 
 git clone https://github.com/garden-io/quickstart-example.git && cd quickstart-example
+git config --global --add safe.directory /usr/local/bin/static
 
 # Do not install NGINX ingress controller
 sed -i 's/\(providers:\)/\1\n  - name: local-kubernetes\n    environments: [local]\n    namespace: ${environment.namespace}\n    defaultHostname: ${var.base-hostname}\n    setupIngressController: null/' project.garden.yml
