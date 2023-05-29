@@ -12,6 +12,7 @@ sudo mv linux-amd64/* /usr/local/bin)
 # K3s is already installed in Killercoda need Kubeconfig to remove traefik
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 helm -n kube-system uninstall traefik && helm -n kube-system uninstall traefik-crd
+cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
 # Wait for traefik to be removed
 sleep 5
