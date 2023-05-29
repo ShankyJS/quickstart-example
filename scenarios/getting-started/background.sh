@@ -31,5 +31,9 @@ sed -i 's/hostname:/linkUrl:/' vote/garden.yml
 # Remove ingress blocks from result and api containers
 sed -i '/ingresses:/, /hostname: result.\${var.base-hostname}/d' api/garden.yml result/garden.yml
 
+# Fix docker image names
+sudo usermod -aG docker ubuntu
+sudo systemctl restart docker
+
 # This tells killercoda that the background is finished
 echo done > /tmp/background0
