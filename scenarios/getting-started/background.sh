@@ -31,4 +31,4 @@ sed -i 's/hostname:/linkUrl:/' vote/garden.yml
 sed -i '/ingresses:/, /hostname: result.\${var.base-hostname}/d' api/garden.yml result/garden.yml
 
 # This tells killercoda that the background is finished
-touch /ks/.k8sfinished
+echo done > /tmp/background0
