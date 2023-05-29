@@ -1,6 +1,6 @@
 # Garden quickstart for Killercoda
 
-## Let's get started 🔨
+## Agenda 📖
 
 This quickstart will show you how to start a local k8s cluster and deploy a simple application to it using Garden in just a couple of minutes 🌸
 
