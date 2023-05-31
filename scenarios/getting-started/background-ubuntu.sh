@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x
-
 # Install rsync if it's not already installed
 command -v rsync &> /dev/null || sudo apt-get install -y rsync
 
@@ -13,16 +11,9 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin
 
-# Download k3s if it's not already installed
-if [ ! -f "./k3s" ]; then
-    wget -O k3s https://github.com/k3s-io/k3s/releases/download/v1.27.1%2Bk3s1/k3s
-    chmod +x k3s
-else
-    # Check if k3s is already running and stop it
-    if ps aux | grep '[k]3s server' > /dev/null; then
-        sudo kill $(ps aux | grep '[k]3s server' | awk '{print $2}')
-    fi
-fi
+# Download k3s, this VM is brand new so we need to install k3s
+wget -O k3s https://github.com/k3s-io/k3s/releases/download/v1.27.1%2Bk3s1/k3s
+chmod +x k3s
 
 # Start k3s server with host Docker iamge support and Traefik ingress controller disabled
 nohup sudo ./k3s server --docker --disable=traefik --write-kubeconfig-mode=644 --snapshotter native > /dev/null 2>&1 &
