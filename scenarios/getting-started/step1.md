@@ -18,4 +18,4 @@ deploy --forward
 
 If the above command fails for any reason; simply wait for it to finish and run it again `deploy --forward`{{exec}}.
 
-After the deployment is done; you can access the `voting` application through this [URL]({{TRAFFIC_HOST1}}).
+After the deployment is done; you can access the `voting` application through this [URL]({{TRAFFIC_HOST1_30000}}).
