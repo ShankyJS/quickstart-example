@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -x
 
 # Install rsync if it's not already installed
 command -v rsync &> /dev/null || sudo apt-get install -y rsync
@@ -31,6 +31,9 @@ nohup sudo ./k3s server --docker --disable=traefik --write-kubeconfig-mode=644 -
 mkdir -p ~/.kube
 sleep 5
 sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+git clone https://github.com/garden-io/quickstart-example.git && cd quickstart-example
+git config --global --add safe.directory '*'
 
 # Do not install NGINX ingress controller
 sed -i 's/\(providers:\)/\1\n  - name: local-kubernetes\n    environments: [local]\n    namespace: ${environment.namespace}\n    defaultHostname: ${var.base-hostname}\n    setupIngressController: null/' project.garden.yml
