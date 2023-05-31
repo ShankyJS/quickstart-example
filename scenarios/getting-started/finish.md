@@ -9,8 +9,8 @@ You have completed our first Killercoda scenario where we learned about Garden B
 
 ## Next Steps 🪜
 
-If you want to continue your journey with Garden, don't hesitate in joining us in our [Discord Server](go.garden.io/discord) to meet our beautiful community & OSS team and share experiences with Garden.
+If you want to continue your journey with Garden, don't hesitate in joining us in our [Discord Server](https://go.garden.io/discord) to meet our beautiful community & OSS team and share experiences with Garden.
 
-Also please leave us a star ⭐️ in our [Github](github.com/garden-io/garden) that helps a lot too!
+Also please leave us a star ⭐️ in our [Github](https://github.com/garden-io/garden) that helps a lot too!
 
 Have a great one! 👋
