@@ -7,16 +7,28 @@ command -v rsync &> /dev/null || sudo apt-get install -y rsync
 command -v garden &> /dev/null || (curl -sSL https://github.com/garden-io/garden/releases/download/0.13.0/garden-0.13.0-linux-amd64.tar.gz | tar xz && \
 sudo mv linux-amd64/* /usr/local/bin)
 
-/usr/local/bin/k3s-killall.sh # <- Because this lab uses k3s by default, this command is needed for me to create a new cluster with the options I need.
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo chmod +x kubectl
+sudo mv kubectl /usr/local/bin
+
+# Download k3s if it's not already installed
+if [ ! -f "./k3s" ]; then
+    wget -O k3s https://github.com/k3s-io/k3s/releases/download/v1.27.1%2Bk3s1/k3s
+    chmod +x k3s
+else
+    # Check if k3s is already running and stop it
+    if ps aux | grep '[k]3s server' > /dev/null; then
+        sudo kill $(ps aux | grep '[k]3s server' | awk '{print $2}')
+    fi
+fi
 
 # Start k3s server with host Docker iamge support and Traefik ingress controller disabled
 nohup sudo k3s server --docker --disable=traefik --write-kubeconfig-mode=644 --snapshotter native > /dev/null 2>&1 &
 
-# Wait for traefik to be deployed before continuing
-sleep 10
-
-export KUBECONFIG=/etc/rancher/k3s/k3s.yaml # This is needed in order to run Helm commands
-cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+# Copy k3s config to user's home directory
+mkdir -p ~/.kube
+sleep 5
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
 
 git clone https://github.com/garden-io/quickstart-example.git && cd quickstart-example
 git config --global --add safe.directory '*'
@@ -39,3 +51,5 @@ kubectl wait --for=condition=complete --timeout=60s -n kube-system job/helm-dele
 
 # This tells killercoda that the background is finished
 echo done > /tmp/background0
+
+

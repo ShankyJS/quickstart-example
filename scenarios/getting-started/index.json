@@ -4,7 +4,7 @@
     "details": {
         "intro": {
           "text": "intro.md",
-          "background": "background.sh",
+          "background": "background-ubuntu.sh",
           "foreground": "foreground.sh"
         },
         "steps": [
@@ -18,6 +18,6 @@
       }
     },
     "backend": {
-      "imageid": "kubernetes-k3s-1node-4GB"
+      "imageid": "ubuntu"
     }
   }
