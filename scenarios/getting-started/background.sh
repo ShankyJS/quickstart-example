@@ -33,6 +33,7 @@ sed -i 's/hostname:/linkUrl:/' vote/garden.yml
 sed -i '/ingresses:/, /hostname: result.\${var.base-hostname}/d' api/garden.yml result/garden.yml
 
 # When you use --disable=traefik you need to wait for the traefik CRDs to be deleted before you can proceed.
+sleep 5 # Wait for Traefik jobs to be created
 kubectl wait --for=condition=complete --timeout=60s -n kube-system job/helm-delete-traefik-crd
 kubectl wait --for=condition=complete --timeout=60s -n kube-system job/helm-delete-traefik
 
