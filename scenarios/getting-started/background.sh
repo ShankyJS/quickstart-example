@@ -32,5 +32,8 @@ sed -i 's/hostname:/linkUrl:/' vote/garden.yml
 # Remove ingress blocks from result and api containers
 sed -i '/ingresses:/, /hostname: result.\${var.base-hostname}/d' api/garden.yml result/garden.yml
 
+# When you use --disable=traefik you need to wait for the traefik CRDs to be deleted before you can proceed.
+kubectl wait --for=condition=complete --timeout=60s -n kube-system job/helm-delete-traefik-crd > /dev/null 2>&1
+
 # This tells killercoda that the background is finished
 echo done > /tmp/background0
